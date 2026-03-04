@@ -42,11 +42,11 @@
 - Return `Task` or `ValueTask` from asynchronous methods.
 - Use `CancellationToken` parameters to support cancellation.
 - Avoid async void methods except for event handlers.
-- Call `ConfigureAwait(false)` on awaited calls to avoid deadlocks.
+- Use `ConfigureAwait(false)` only in library code that may be consumed by apps with a `SynchronizationContext` (e.g., classic ASP.NET, WPF, WinForms); it is generally unnecessary in ASP.NET Core.
 
 ### Error Handling
 
-- Use appropriate exception types.
+- Use appropriate exception types. 
 - Include helpful error messages.
 - Avoid catching exceptions without rethrowing them.
 
@@ -59,7 +59,7 @@
 ### Implementation Guidelines
 
 - Write code that is secure by default. Avoid exposing potentially private or sensitive data.
-- Make code NativeAOT compatible when possible. This means avoiding dynamic code generation, reflection, and other features that are not compatible. with NativeAOT. If not possible, mark the code with an appropriate annotation or throw an exception.
+- Make code NativeAOT compatible when possible. This means avoiding dynamic code generation, reflection, and other features that are not compatible with NativeAOT. If not possible, mark the code with an appropriate annotation or throw an exception.
 
 ## Documentation
 
@@ -70,9 +70,8 @@
 - Overriding members should inherit the XML documentation from the base type via `/// <inheritdoc />`.
 
 ## Markdown
-
 - Use Markdown for documentation files (e.g., README.md).
-- Use triple backticks for code blocks, JSON snippets and bash commands, specifying the language (e.g., ```csharp```, ```json``` and ```bash```).
+- Use triple backticks for code blocks, JSON snippets and bash commands, specifying the language (e.g., ```csharp, ```json and ```bash).
 
 ## Testing
 
